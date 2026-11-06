@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendario de Evaluaciones</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="titulo">📚 Calendario de Evaluaciones</h1>
+    <div id="modo" class="badge"></div>
+    <button id="btnNuevo" class="primary">+ Nueva evaluación</button>
+  </header>
+
+  <main>
+    <section class="cal">
+      <div class="cal-nav">
+        <button id="prev">‹</button>
+        <h2 id="mesLabel"></h2>
+        <button id="next">›</button>
+        <button id="hoy">Hoy</button>
+      </div>
+      <div class="filtro">
+        <label>Ramo: <select id="filtroRamo"><option value="">Todos</option></select></label>
+      </div>
+      <div class="grid dow"></div>
+      <div class="grid" id="dias"></div>
+    </section>
+
+    <aside>
+      <h3>Próximas evaluaciones</h3>
+      <ul id="proximas"></ul>
+    </aside>
+  </main>
+
+  <dialog id="dlg">
+    <form id="form" method="dialog">
+      <h3 id="dlgTitulo">Nueva evaluación</h3>
+      <label>Ramo
+        <input name="ramo" list="ramos" required placeholder="Ej: Cálculo II">
+        <datalist id="ramos"></datalist>
+      </label>
+      <label>Tipo
+        <select name="tipo">
+          <option>Prueba</option><option>Control</option><option>Examen</option>
+          <option>Entrega / Trabajo</option><option>Presentación</option><option>Otro</option>
+        </select>
+      </label>
+      <label>Fecha <input type="date" name="fecha" required></label>
+      <label>Hora (opcional) <input type="time" name="hora"></label>
+      <label>Qué entra / notas
+        <textarea name="notas" rows="6" placeholder="Capítulos, temas, materiales, tips..."></textarea>
+      </label>
+      <label>Tu nombre <input name="autor" placeholder="Opcional"></label>
+      <div class="acciones">
+        <button type="button" id="btnEliminar" class="danger hidden">Eliminar</button>
+        <span class="sp"></span>
+        <button type="button" id="btnCancelar">Cancelar</button>
+        <button type="submit" class="primary">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
