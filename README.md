@@ -1,14 +1,26 @@
 # Calendario de Evaluaciones
 
-Web estática (HTML/CSS/JS, sin instalar nada). Abre `index.html` para probar.
+Next.js 15 (App Router) + React 19 + TypeScript, con funciones Rust en Vercel.
 
-## Compartirlo con tus compañeros (3 pasos)
+## Funciones
+- Calendario mensual, filtro por ramo, búsqueda y ocultar hechas
+- Marcar evaluaciones como hechas, modo oscuro
+- Resumen/estadísticas (`api/stats.rs`, Rust)
+- Exportar a `.ics` para Google Calendar/Outlook/iPhone con recordatorio 1 día antes (`api/ics.rs`, Rust)
+- Compartido en línea con Firebase Realtime Database (opcional)
 
-1. **Base de datos gratis**: entra a https://console.firebase.google.com → crear proyecto → *Build → Realtime Database* → *Create database* → modo **test**. Copia la URL (ej. `https://xxxx-default-rtdb.firebaseio.com`) y pégala en `config.js` en `databaseURL`.
-2. **Publicar**: arrastra esta carpeta a https://app.netlify.com/drop (o usa GitHub Pages).
-3. Envía el link por WhatsApp.
+## Desarrollo
+```
+npm install
+npm run dev
+```
+En `next dev` las rutas Rust no existen: las estadísticas usan un respaldo en JS y `.ics` avisa que requiere Vercel. Para probar Rust local: `vercel dev`.
 
-> Nota: en modo test cualquiera con el link puede editar, y las reglas de test expiran a los 30 días; renuévalas en la pestaña *Rules* de Firebase.
+## Compartir con el curso
+1. Crea una Realtime Database en https://console.firebase.google.com (modo test).
+2. En Vercel → Settings → Environment Variables: `NEXT_PUBLIC_DATABASE_URL` = `https://xxxx-default-rtdb.firebaseio.com`. Redeploy.
 
-Sin `databaseURL` funciona en modo local (solo tu navegador).
+Sin esa variable funciona en modo local (solo tu navegador).
 
+## Deploy
+Importa el repo en https://vercel.com/new (preset Next.js). `vercel.json` ya activa el runtime de Rust para `api/*.rs`.

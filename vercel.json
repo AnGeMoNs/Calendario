@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "functions": {
+    "api/**/*.rs": { "runtime": "vercel-rust@4.0.9" }
+  }
+}
